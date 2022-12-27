@@ -30,4 +30,12 @@ public class Cliente {
     private String indirizzo;
     @Column(name = "attivo")
     private Boolean attivo;
+    
+	public Cliente(String nome, String cognome, String indirizzo, Boolean attivo) {
+		super();
+		this.nome = nome;
+		this.cognome = cognome;
+		this.indirizzo = indirizzo;
+		this.attivo = attivo;
+	}
 }

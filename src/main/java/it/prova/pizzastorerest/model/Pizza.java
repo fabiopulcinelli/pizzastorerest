@@ -30,4 +30,12 @@ public class Pizza {
     private Integer prezzoBase;
     @Column(name = "attivo")
     private Boolean attivo;
+    
+	public Pizza(String descrizione, String ingredienti, Integer prezzoBase, Boolean attivo) {
+		super();
+		this.descrizione = descrizione;
+		this.ingredienti = ingredienti;
+		this.prezzoBase = prezzoBase;
+		this.attivo = attivo;
+	}
 }

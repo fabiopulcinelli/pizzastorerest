@@ -32,4 +32,10 @@ public class Ruolo {
     private String descrizione;
     @Column(name = "codice")
     private String codice;
+    
+	public Ruolo(String descrizione, String codice) {
+		super();
+		this.descrizione = descrizione;
+		this.codice = codice;
+	}
 }

@@ -1,8 +1,8 @@
 package it.prova.pizzastorerest.service;
 
-import it.prova.pizzastorerest.model.Utente;
-
 import java.util.List;
+
+import it.prova.pizzastorerest.model.Utente;
 
 public interface UtenteService {
 

@@ -51,6 +51,18 @@ public class Utente {
     @JoinTable(name = "utente_ruolo", joinColumns = @JoinColumn(name = "utente_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ruolo_id", referencedColumnName = "ID"))
     private Set<Ruolo> ruoli = new HashSet<Ruolo>(0);
 
+    public Utente(String username, String password, String nome, String cognome, String email, LocalDate dateCreated,
+			Set<Ruolo> ruoli) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.email = email;
+		this.dateCreated = dateCreated;
+		this.ruoli = ruoli;
+	}
+    
 	public boolean isAdmin() {
         for (Ruolo ruoloItem : ruoli) {
             if (ruoloItem.getCodice().equals(Ruolo.ROLE_ADMIN))
@@ -66,5 +78,4 @@ public class Utente {
 	public boolean isDisabilitato() {
 		return this.stato != null && this.stato.equals(StatoUtente.DISABILITATO);
 	}
-
 }

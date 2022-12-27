@@ -51,4 +51,16 @@ public class Ordine {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "utente_id", nullable = true)
     private Utente fattorino;
+
+	public Ordine(LocalDate data, Boolean closed, String codice, Integer costoTotale, Cliente cliente, Set<Pizza> pizze,
+			Utente fattorino) {
+		super();
+		this.data = data;
+		this.closed = closed;
+		this.codice = codice;
+		this.costoTotale = costoTotale;
+		this.cliente = cliente;
+		this.pizze = pizze;
+		this.fattorino = fattorino;
+	}
 }
