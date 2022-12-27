@@ -63,4 +63,13 @@ public class Ordine {
 		this.pizze = pizze;
 		this.fattorino = fattorino;
 	}
+	
+	public Ordine(Long id, LocalDate data, Boolean closed, String codice, Integer costoTotale) {
+		super();
+		this.id = id;
+		this.data = data;
+		this.closed = closed;
+		this.codice = codice;
+		this.costoTotale = costoTotale;
+	}
 }

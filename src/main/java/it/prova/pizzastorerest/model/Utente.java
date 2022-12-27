@@ -63,6 +63,20 @@ public class Utente {
 		this.ruoli = ruoli;
 	}
     
+    public Utente(Long id, String username, String password, String nome, String cognome, String email, LocalDate dateCreated) {
+    	this.id = id;
+		this.username = username;
+		this.password = password;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.email = email;
+		this.dateCreated = dateCreated;
+	}
+    
+    public Utente(Long id) {
+    	this.id = id;
+	}
+    
 	public boolean isAdmin() {
         for (Ruolo ruoloItem : ruoli) {
             if (ruoloItem.getCodice().equals(Ruolo.ROLE_ADMIN))

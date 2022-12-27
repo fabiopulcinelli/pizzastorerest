@@ -38,4 +38,9 @@ public class Cliente {
 		this.indirizzo = indirizzo;
 		this.attivo = attivo;
 	}
+	
+	public Cliente(Long id) {
+		super();
+		this.id = id;
+	}
 }
