@@ -22,13 +22,13 @@ public class CustomOrdineRepositoryImpl implements CustomOrdineRepository {
         Map<String, Object> paramaterMap = new HashMap<String, Object>();
         List<String> whereClauses = new ArrayList<String>();
 
-        StringBuilder queryBuilder = new StringBuilder("select o from Ordine o where o.id = o.id ");
+        StringBuilder queryBuilder = new StringBuilder("select o from Ordine o left join o.pizze p where o.id = o.id ");
 
         if (ordineEsempio.getData() != null) {
             whereClauses.add(" o.data  >= :data ");
             paramaterMap.put("data", ordineEsempio.getData());
         }
-        if (ordineEsempio.getClosed()) {
+        if (ordineEsempio.getClosed() != null) {
             whereClauses.add(" o.closed = :closed ");
             paramaterMap.put("closed",ordineEsempio.getClosed());
         }
