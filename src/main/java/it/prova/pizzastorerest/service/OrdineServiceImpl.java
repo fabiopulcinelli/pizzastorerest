@@ -1,5 +1,6 @@
 package it.prova.pizzastorerest.service;
 
+import it.prova.pizzastorerest.model.Cliente;
 import it.prova.pizzastorerest.model.Ordine;
 import it.prova.pizzastorerest.repository.ordine.OrdineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,4 +65,8 @@ public class OrdineServiceImpl implements OrdineService{
         return repository.findByExample(example);
     }
 
+	@Override
+	public Ordine findByCodice(String codice) {
+		return repository.findByCodice(codice);
+	}
 }

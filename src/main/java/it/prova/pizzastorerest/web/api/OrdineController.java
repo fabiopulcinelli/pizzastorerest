@@ -64,7 +64,7 @@ public class OrdineController {
     public void delete(@PathVariable(value = "id", required = true) long id) {
         Ordine ordine = ordineService.caricaSingoloOrdine(id);
         if (ordine == null)
-            throw new NotFoundException("Pizza not found con id: " + id);
+            throw new NotFoundException("Ordine not found con id: " + id);
         ordineService.rimuovi(id);
     }
 

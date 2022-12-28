@@ -9,6 +9,8 @@ import it.prova.pizzastorerest.model.Ordine;
 
 public interface OrdineRepository extends CrudRepository<Ordine, Long>, CustomOrdineRepository {
 	
+	Ordine findByCodice(String codice);
+	
 	Optional<Ordine> findById(Long id);
 	
     @Query("from Ordine o left join fetch o.pizze left join fetch o.fattorino left join fetch o.cliente where o.id = ?1 ")

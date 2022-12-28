@@ -2,6 +2,7 @@ package it.prova.pizzastorerest;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -9,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import it.prova.pizzastorerest.model.Cliente;
+import it.prova.pizzastorerest.model.Ordine;
 import it.prova.pizzastorerest.model.Pizza;
 import it.prova.pizzastorerest.model.Ruolo;
 import it.prova.pizzastorerest.model.Utente;
@@ -116,6 +118,16 @@ public class PizzastorerestApplication implements CommandLineRunner{
         if(clienteServiceInstance.findByNomeAndCognome("Lucia","Marroni") == null){
         	Cliente LM = new Cliente("Lucia","Marroni","Via Mosca 52",true);
             clienteServiceInstance.inserisciNuovo(LM);
+        }
+        
+        //creazione ordine
+        if(ordineServiceInstance.findByCodice("Codice 1") == null){
+        	Set<Pizza> pizzeOrdine1 = new HashSet();
+        	pizzeOrdine1.add(pizzaServiceInstance.findByDescrizione("Margherita"));
+        	pizzeOrdine1.add(pizzaServiceInstance.findByDescrizione("Diavola"));
+        	Ordine ordine = new Ordine(LocalDate.now(), false, "Codice 1", 11, clienteServiceInstance.findByNomeAndCognome("Fabio","Pulcinelli"),
+        			pizzeOrdine1, utenteServiceInstance.findByUsername("fattorino") );
+        	ordineServiceInstance.inserisciNuovo(ordine);
         }
 	}
 

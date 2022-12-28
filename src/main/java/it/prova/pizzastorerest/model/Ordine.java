@@ -72,4 +72,8 @@ public class Ordine {
 		this.codice = codice;
 		this.costoTotale = costoTotale;
 	}
+	
+	public Ordine(String codice) {
+		this.codice = codice;
+	}
 }
