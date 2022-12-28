@@ -7,6 +7,8 @@ import java.util.List;
 public interface PizzaService {
 
     public List<Pizza> listAllPizzas();
+    
+    public List<Pizza> listAllPizzasDisponibili();
 
     public Pizza caricaSingolaPizza(Long id);
 

@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 @Entity
-@Table(name = "utente")
+@Table(name = "pizza")
 public class Pizza {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -19,6 +19,11 @@ public class PizzaServiceImpl implements PizzaService {
     public List<Pizza> listAllPizzas() {
         return (List<Pizza>) repository.findAll();
     }
+    
+    @Override
+    public List<Pizza> listAllPizzasDisponibili() {
+        return (List<Pizza>) repository.findAllPizzasDisponibili();
+    }
 
     @Override
     public Pizza caricaSingolaPizza(Long id) {
@@ -44,7 +49,7 @@ public class PizzaServiceImpl implements PizzaService {
 
     @Transactional
     public void rimuovi(Long idToRemove) {
-        /*Rimozione Logica della pizza*/
+        //delete metterà solo il flag a false
         Pizza pizzaReloaded = repository.findById(idToRemove).orElse(null);
         if(pizzaReloaded == null) throw new RuntimeException("Elemento non trovato");
         pizzaReloaded.setAttivo(false);

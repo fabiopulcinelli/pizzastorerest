@@ -21,7 +21,7 @@ public class CustomPizzaRepositoryImpl implements CustomPizzaRepository{
         Map<String, Object> paramaterMap = new HashMap<String, Object>();
         List<String> whereClauses = new ArrayList<String>();
 
-        StringBuilder queryBuilder = new StringBuilder("select p from Pizza p where p.id = p.id ");
+        StringBuilder queryBuilder = new StringBuilder("select p from Pizza p where p.attivo is true ");
 
         if (StringUtils.isNotEmpty(pizzaEsempio.getDescrizione())) {
             whereClauses.add(" p.descrizione  like :descrizione ");
