@@ -50,7 +50,9 @@ public class OrdineServiceImpl implements OrdineService{
     @Transactional
     public Ordine inserisciNuovo(Ordine ordineInstance) {
         ordineInstance.setClosed(false);
-        return repository.save(ordineInstance);
+        repository.save(ordineInstance);
+        ordineInstance.setCostoTotale(calcolaPrezzoOrdine(ordineInstance.getId()));
+		return repository.save(ordineInstance);
     }
 
     @Transactional

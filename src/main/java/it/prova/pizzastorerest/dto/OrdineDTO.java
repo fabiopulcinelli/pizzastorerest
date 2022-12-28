@@ -33,8 +33,8 @@ public class OrdineDTO {
 
     private Boolean closed;
     @NotBlank(message = "{codice.notblank}")
+    
     private String codice;
-    @NotNull(message = "{costo.notnull}")
     private Integer costo;
 
     private Set<PizzaDTO> pizze = new HashSet<PizzaDTO>(0);
