@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import it.prova.pizzastorerest.model.Cliente;
@@ -27,6 +28,7 @@ public class OrdineDTO {
 
     private Long id;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate data;
 
     private Boolean closed;
@@ -54,11 +56,11 @@ public class OrdineDTO {
         if(pizze != null)
         result.setPizze(pizze.stream().map(PizzaDTO::buildPizzaModel).collect(Collectors.toSet()));
 
-        if (fattorino != null)
-            result.setFattorino(new Utente(id));
+        if (this.fattorino != null)
+			result.setFattorino(this.fattorino.buildUtenteModel(false));
 
-        if (cliente != null)
-            result.setCliente(new Cliente(id));
+		if (this.cliente != null)
+			result.setCliente(this.cliente.buildClienteModel());
 
         return result;
     }
@@ -80,13 +82,13 @@ public class OrdineDTO {
 
     public static List<OrdineDTO> createOrdineDTOListFromModelSet(Set<Ordine> modelListInput){
         return modelListInput.stream().map(ordine -> {
-            return OrdineDTO.buildOrdineDTOFromModel(ordine, false, false, false);
+            return OrdineDTO.buildOrdineDTOFromModel(ordine, true, true, true);
         }).collect(Collectors.toList());
     }
 
     public static List<OrdineDTO> createOrdineDTOListFromModelList(List<Ordine> modelListInput){
         return modelListInput.stream().map(ordine -> {
-            return OrdineDTO.buildOrdineDTOFromModel(ordine, false, false, false);
+            return OrdineDTO.buildOrdineDTOFromModel(ordine, true, true, true);
         }).collect(Collectors.toList());
     }
 }

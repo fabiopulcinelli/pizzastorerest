@@ -1,13 +1,16 @@
 package it.prova.pizzastorerest.service;
 
-import it.prova.pizzastorerest.model.Cliente;
-import it.prova.pizzastorerest.model.Ordine;
-import it.prova.pizzastorerest.repository.ordine.OrdineRepository;
+import java.time.LocalDate;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import it.prova.pizzastorerest.model.Cliente;
+import it.prova.pizzastorerest.model.Ordine;
+import it.prova.pizzastorerest.repository.ordine.OrdineRepository;
+import it.prova.pizzastorerest.web.api.exception.NotFoundException;
 
 @Service
 @Transactional(readOnly = true)
@@ -65,8 +68,53 @@ public class OrdineServiceImpl implements OrdineService{
         return repository.findByExample(example);
     }
 
+    @Override
+	@Transactional
+	public void changeAbilitation(Long id) {
+		Ordine ordineInstance = caricaSingoloOrdine(id);
+		if (ordineInstance == null)
+			throw new NotFoundException("Elemento non trovato.");
+
+		if (ordineInstance.getClosed()) {
+			ordineInstance.setClosed(false);
+		} else {
+			ordineInstance.setClosed(true);
+		}
+
+	}
+    
 	@Override
 	public Ordine findByCodice(String codice) {
 		return repository.findByCodice(codice);
+	}
+	
+	@Override
+	public Integer calcolaPrezzoOrdine(Long idOrdine) {
+		return repository.calcolaSommaPrezzi(idOrdine);
+	}
+
+	@Override
+	public Integer ricaviTotaliBetween(LocalDate dataInizio, LocalDate dataFine) {
+		return repository.calcolaRicaviTotaliTra(dataInizio, dataFine);
+	}
+
+	@Override
+	public Integer ordiniTotaliBetween(LocalDate dataInizio, LocalDate dataFine) {
+		return repository.countByDataBetween(dataInizio, dataFine);
+	}
+
+	@Override
+	public Integer pizzeOrdinateBetween(LocalDate dataInizio, LocalDate dataFine) {
+		return repository.countPizzeOrderedBetween(dataInizio, dataFine);
+	}
+
+	@Override
+	public List<Cliente> clientiVirtuosiBetween(LocalDate dataInizio, LocalDate dataFine) {
+		return repository.findAllClientiVirtuosiBetween(dataInizio, dataFine);
+	}
+
+	@Override
+	public List<Ordine> ordiniPerFattorino() {
+		return repository.findAllOrdiniPerFattorino();
 	}
 }
