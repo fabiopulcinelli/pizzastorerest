@@ -43,9 +43,10 @@ public class OrdineDTO {
     @NotNull(message = "{fattorino.notnull}")
     private UtenteDTO fattorino;
 
-    public OrdineDTO(Long id, LocalDate data, Boolean closed, Integer costo) {
+    public OrdineDTO(Long id, LocalDate data, String codice, Boolean closed, Integer costo) {
 		this.id = id;
 		this.data = data;
+		this.codice = codice;
 		this.closed = closed;
 		this.costo = costo;
 	}
@@ -66,7 +67,7 @@ public class OrdineDTO {
     }
 
     public static OrdineDTO buildOrdineDTOFromModel(Ordine ordineModel,boolean includePizze, boolean includeFattorino, boolean includeCliente ){
-        OrdineDTO result = new OrdineDTO(ordineModel.getId(), ordineModel.getData(), ordineModel.getClosed(), ordineModel.getCostoTotale());
+        OrdineDTO result = new OrdineDTO(ordineModel.getId(), ordineModel.getData(), ordineModel.getCodice(), ordineModel.getClosed(), ordineModel.getCostoTotale());
 
         if (includePizze)
             result.setPizze( PizzaDTO.createPizzaDTOSetFromModelSet(ordineModel.getPizze()));
