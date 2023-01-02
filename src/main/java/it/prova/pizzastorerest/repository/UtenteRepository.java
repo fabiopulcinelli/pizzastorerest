@@ -1,5 +1,6 @@
 package it.prova.pizzastorerest.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.EntityGraph;
@@ -19,4 +20,6 @@ public interface UtenteRepository extends CrudRepository<Utente, Long>{
 	@EntityGraph(attributePaths = { "ruoli" })
 	Utente findByUsernameAndPassword(String username, String password);
 
+	@Query("from Utente u left join fetch u.ruoli r where r.codice = 'ROLE_FATTORINO'")
+	List<Utente> findAllUtentiFattorini();
 }

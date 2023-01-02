@@ -7,6 +7,8 @@ import it.prova.pizzastorerest.model.Utente;
 public interface UtenteService {
 
     public List<Utente> listAllUtenti();
+    
+    public List<Utente> listAllFattorini();
 
     public Utente caricaSingoloUtente(Long id);
 
