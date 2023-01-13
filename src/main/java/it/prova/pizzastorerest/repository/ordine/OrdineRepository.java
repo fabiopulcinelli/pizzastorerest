@@ -19,7 +19,7 @@ public interface OrdineRepository extends CrudRepository<Ordine, Long>, CustomOr
     @Query("from Ordine o left join fetch o.pizze left join fetch o.fattorino left join fetch o.cliente where o.id = ?1 ")
     Optional<Ordine> findByIdEager(Long id);
     
-    @Query(value= "select sum(p.prezzoBase) from Pizza p join ordine_pizza op on p.id=op.pizza_id where ordine_id = ?1", nativeQuery = true)
+    @Query(value= "select sum(p.prezzoBase) from pizza p join ordine_pizza op on p.id=op.pizza_id where ordine_id = ?1", nativeQuery = true)
 	Integer calcolaSommaPrezzi(Long id);
 	
 	@Query("select sum(o.costoTotale) from Ordine o where o.data between ?1 and ?2")
